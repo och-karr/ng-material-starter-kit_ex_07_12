@@ -1,11 +1,11 @@
 <mat-card>
-  <mat-card-title>Categories</mat-card-title>
+  <mat-card-title>Categories - filter by subject</mat-card-title>
   <mat-card-content>
-    <mat-action-list role="list" fxLayout="row">
-      <mat-list-item role="listitem" *ngFor="let item of categories$ | async" (click)="selectCategory(item)">
+    <mat-selection-list role="list" fxLayout="row" [multiple]="false">
+      <mat-list-option role="listoption" *ngFor="let item of categories$ | async" [value]="item" (click)="selectCategory(item)">
         {{item}}
-      </mat-list-item>
-    </mat-action-list>
+      </mat-list-option>
+    </mat-selection-list>
   </mat-card-content>
 </mat-card>
 <mat-card>
