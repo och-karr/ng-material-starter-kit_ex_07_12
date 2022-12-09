@@ -12,8 +12,20 @@
   <mat-card-title>Employees - filter by age</mat-card-title>
   <mat-card-content>
     <mat-selection-list role="list" fxLayout="row" [multiple]="false">
-      <mat-list-option role="listoption" *ngFor="let item of ageRanges | async" [value]="item" (click)="selectAgeRange(item)">
-        {{item}}
+      <mat-list-option role="listoption" (click)="selectAgeRange(20)">
+        0 - 20
+      </mat-list-option>
+      <mat-list-option role="listoption" (click)="selectAgeRange(30)">
+        21 - 30
+      </mat-list-option>
+      <mat-list-option role="listoption" (click)="selectAgeRange(40)">
+        31 - 40
+      </mat-list-option>
+      <mat-list-option role="listoption" (click)="selectAgeRange(50)">
+        41 - 50
+      </mat-list-option>
+      <mat-list-option role="listoption" (click)="selectAgeRange(100)">
+        51 - 100
       </mat-list-option>
       <mat-list-option role="listoption" (click)="selectAgeRange(200)">
         All

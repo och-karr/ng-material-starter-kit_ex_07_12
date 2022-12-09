@@ -13,7 +13,7 @@ export class SortedEmployeeListComponent {
   private _orderSubject: BehaviorSubject<string> = new BehaviorSubject<string>('asc');
   public order$: Observable<string> = this._orderSubject.asObservable();
   public orders: Observable<string[]> = of(['asc', 'desc']);
-  private _ageRangeSubject: Subject<number> = new BehaviorSubject<number>(200);
+  private _ageRangeSubject: Subject<number> = new Subject<number>();
   public ageRange$: Observable<number> = this._ageRangeSubject.asObservable();
   readonly ageRanges: Observable<number[]> = of([20, 30, 40, 50, 100]);
 
