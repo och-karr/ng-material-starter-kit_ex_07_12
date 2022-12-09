@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Order by price</mat-card-title>
+  <mat-card-title>order by salary</mat-card-title>
   <mat-card-content>
     <mat-selection-list role="list" fxLayout="row" [multiple]="false">
       <mat-list-option role="listoption" *ngFor="let item of orders | async" (click)="sort(item)">
@@ -9,7 +9,7 @@
   </mat-card-content>
 </mat-card>
 <mat-card>
-  <mat-card-title>Employees - filter by age</mat-card-title>
+  <mat-card-title>filter by age</mat-card-title>
   <mat-card-content>
     <mat-selection-list role="list" fxLayout="row" [multiple]="false">
       <mat-list-option role="listoption" (click)="selectAgeRange(20)">
@@ -34,7 +34,7 @@
   </mat-card-content>
 </mat-card>
 <mat-card>
-  <mat-card-title>Products</mat-card-title>
+  <mat-card-title>Employees</mat-card-title>
   <mat-card-content>
     <mat-list role="list">
       <mat-list-item role="listitem" *ngFor="let item of employees$ | async">
