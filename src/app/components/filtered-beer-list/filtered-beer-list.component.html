@@ -5,9 +5,8 @@
 </mat-list>
 <mat-paginator [length]="100"
                [pageSize]="10"
-               [pageSizeOptions]="pageSizeOptions"
+               [pageSizeOptions]="[5, 10, 25]"
                aria-label="Select page"
-               (page)="selectItemsPerPage($event.pageSize, $event.pageIndex)"
-
+               (page)="changeItemsView($event.pageSize, $event.pageIndex)"
 >
 </mat-paginator>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import {BehaviorSubject, Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, switchMap} from 'rxjs';
 import { BeerService } from '../../services/beer.service';
 
 @Component({
@@ -9,23 +9,26 @@ import { BeerService } from '../../services/beer.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilteredBeerListComponent {
-  pageSizeOptions = [5, 10, 25];
   private _pageSizeOptionsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(10);
   public pageSizeOption$: Observable<number> = this._pageSizeOptionsSubject.asObservable();
 
-  readonly beers$ = this.pageSizeOption$.pipe(
-    switchMap((pageSize: number) =>
-      this._beerService.getSomePerPage(2, pageSize)
+  private _pageIndexOptionsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  public pageIndexOption$: Observable<number> = this._pageIndexOptionsSubject.asObservable();
+
+  readonly beers$ = combineLatest([
+    this.pageSizeOption$,
+    this.pageIndexOption$
+  ]).pipe(
+    switchMap(([pageSize, pageIndex]: [number, number]) =>
+      this._beerService.getSomePerPage(pageIndex, pageSize)
     )
   );
 
   constructor(private _beerService: BeerService) {
   }
 
-  selectItemsPerPage(itemsPerPage: number, pageIndex: number): void {
+  changeItemsView(itemsPerPage: number, pageIndex: number): void {
+    this._pageIndexOptionsSubject.next(pageIndex + 1);
     this._pageSizeOptionsSubject.next(itemsPerPage);
-    console.log(pageIndex);
-
   }
-
 }
