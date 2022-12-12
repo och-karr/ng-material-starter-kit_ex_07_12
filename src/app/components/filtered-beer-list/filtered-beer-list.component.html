@@ -1,0 +1,13 @@
+<mat-list role="list">
+  <mat-list-item role="listitem" *ngFor="let item of beers$ | async">
+    {{item.name}}
+  </mat-list-item>
+</mat-list>
+<mat-paginator [length]="100"
+               [pageSize]="10"
+               [pageSizeOptions]="pageSizeOptions"
+               aria-label="Select page"
+               (page)="selectItemsPerPage($event.pageSize, $event.pageIndex)"
+
+>
+</mat-paginator>
