@@ -11,7 +11,6 @@ import {ProductService} from '../../services/product.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListWithDeleteComponent {
-  readonly list$: Observable<ProductModel[]> = this._productService.getAll();
   private _refreshSubject: BehaviorSubject<void> = new BehaviorSubject<void>(void 0);
   public refresh$: Observable<void> = this._refreshSubject.asObservable();
   readonly refreshedList$: Observable<ProductModel[]> = this.refresh$.pipe(
