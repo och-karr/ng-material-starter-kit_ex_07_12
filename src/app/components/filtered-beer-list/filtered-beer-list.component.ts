@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, Observable, switchMap} from 'rxjs';
 import { BeerService } from '../../services/beer.service';
+import {BeerModel} from "../../models/beer.model";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-filtered-beer-list',
@@ -9,26 +11,22 @@ import { BeerService } from '../../services/beer.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilteredBeerListComponent {
-  private _pageSizeOptionsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(10);
-  public pageSizeOption$: Observable<number> = this._pageSizeOptionsSubject.asObservable();
+  private _pageParamsSubject: BehaviorSubject<{ pageIndex: number, pageSize: number }> = new BehaviorSubject<{ pageIndex: number, pageSize: number }>({ pageIndex: 1, pageSize: 10 });
+  public pageParams$: Observable<{ pageIndex: number, pageSize: number }> = this._pageParamsSubject.asObservable();
 
-  private _pageIndexOptionsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-  public pageIndexOption$: Observable<number> = this._pageIndexOptionsSubject.asObservable();
-
-  readonly beers$ = combineLatest([
-    this.pageSizeOption$,
-    this.pageIndexOption$
-  ]).pipe(
-    switchMap(([pageSize, pageIndex]: [number, number]) =>
-      this._beerService.getSomePerPage(pageIndex, pageSize)
+  readonly beers$: Observable<BeerModel[]> = this.pageParams$.pipe(
+    switchMap((data) =>
+      this._beerService.getSomePerPage(data.pageIndex, data.pageSize)
     )
   );
 
   constructor(private _beerService: BeerService) {
   }
 
-  changeItemsView(itemsPerPage: number, pageIndex: number): void {
-    this._pageIndexOptionsSubject.next(pageIndex + 1);
-    this._pageSizeOptionsSubject.next(itemsPerPage);
+  changeItemsView($event: PageEvent): void {
+    this._pageParamsSubject.next({
+      pageIndex: $event.pageIndex + 1,
+      pageSize: $event.pageSize
+    });
   }
 }
