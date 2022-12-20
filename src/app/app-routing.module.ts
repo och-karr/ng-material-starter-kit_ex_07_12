@@ -7,6 +7,7 @@ import { SortedEmployeeListComponent } from './components/sorted-employee-list/s
 import { FilteredBeerListComponent } from './components/filtered-beer-list/filtered-beer-list.component';
 import { ProductListWithDeleteComponent } from './components/product-list-with-delete/product-list-with-delete.component';
 import { EmployeeListWithDeleteComponent } from './components/employee-list-with-delete/employee-list-with-delete.component';
+import { ProductMasterDetailsComponent } from './components/product-master-details/product-master-details.component';
 import { FilteredProductListRoutingComponentModule } from './components/filtered-product-list-routing/filtered-product-list-routing.component-module';
 import { CategoryServiceModule } from './services/category.service-module';
 import { FilteredProductListSubjectComponentModule } from './components/filtered-product-list-subject/filtered-product-list-subject.component-module';
@@ -18,9 +19,10 @@ import { FilteredBeerListComponentModule } from './components/filtered-beer-list
 import { BeerServiceModule } from './services/beer.service-module';
 import { ProductListWithDeleteComponentModule } from './components/product-list-with-delete/product-list-with-delete.component-module';
 import { EmployeeListWithDeleteComponentModule } from './components/employee-list-with-delete/employee-list-with-delete.component-module';
+import { ProductMasterDetailsComponentModule } from './components/product-master-details/product-master-details.component-module';
 
 @NgModule({
-  imports: [RouterModule.forRoot([{ path: 'products/:category', component: FilteredProductListRoutingComponent }, { path: 'products', component: FilteredProductListSubjectComponent }, { path: 'sorted-products', component: SortedProductListComponent }, { path: 'sorted-employees', component: SortedEmployeeListComponent }, { path: 'beers-with-pagination', component: FilteredBeerListComponent }, { path: 'refresh-products', component: ProductListWithDeleteComponent }, { path: 'refresh-employees', component: EmployeeListWithDeleteComponent }]), FilteredProductListRoutingComponentModule, CategoryServiceModule, FilteredProductListSubjectComponentModule, ProductServiceModule, SortedProductListComponentModule, SortedEmployeeListComponentModule, EmployeeServiceModule, FilteredBeerListComponentModule, BeerServiceModule, ProductListWithDeleteComponentModule, EmployeeListWithDeleteComponentModule],
+  imports: [RouterModule.forRoot([{ path: 'products/:category', component: FilteredProductListRoutingComponent }, { path: 'products', component: FilteredProductListSubjectComponent }, { path: 'sorted-products', component: SortedProductListComponent }, { path: 'sorted-employees', component: SortedEmployeeListComponent }, { path: 'beers-with-pagination', component: FilteredBeerListComponent }, { path: 'refresh-products', component: ProductListWithDeleteComponent }, { path: 'refresh-employees', component: EmployeeListWithDeleteComponent }, { path: 'products-master-details', component: ProductMasterDetailsComponent }]), FilteredProductListRoutingComponentModule, CategoryServiceModule, FilteredProductListSubjectComponentModule, ProductServiceModule, SortedProductListComponentModule, SortedEmployeeListComponentModule, EmployeeServiceModule, FilteredBeerListComponentModule, BeerServiceModule, ProductListWithDeleteComponentModule, EmployeeListWithDeleteComponentModule, ProductMasterDetailsComponentModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
