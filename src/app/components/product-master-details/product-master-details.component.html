@@ -3,9 +3,12 @@
     <mat-list role="list">
       <mat-list-item role="listitem" *ngFor="let item of list$ | async">
         {{ item.title }}
-        <button mat-button color="primary" (click)="selectProduct(item.id)">
-          Show details
-        </button>
+<!--        <button mat-button color="primary" (click)="selectProduct(item.id)">-->
+<!--          Show details-->
+<!--        </button>-->
+        <button mat-button color="primary" (click)="selectProduct(item)">
+        Show details
+      </button>
       </mat-list-item>
     </mat-list>
   </mat-grid-tile>
