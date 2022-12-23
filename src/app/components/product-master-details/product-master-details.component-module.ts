@@ -5,9 +5,10 @@ import { MatListModule } from '@angular/material/list';
 import { ProductMasterDetailsComponent } from './product-master-details.component';
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
+import {FlexModule} from "@angular/flex-layout";
 
 @NgModule({
-  imports: [MatGridListModule, MatListModule, NgForOf, AsyncPipe, CommonModule, MatButtonModule],
+    imports: [MatGridListModule, MatListModule, NgForOf, AsyncPipe, CommonModule, MatButtonModule, FlexModule],
   declarations: [ProductMasterDetailsComponent],
   providers: [],
   exports: [ProductMasterDetailsComponent]

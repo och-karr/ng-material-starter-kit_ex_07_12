@@ -8,14 +8,25 @@
 <!--        </button>-->
         <button mat-button color="primary" (click)="selectProduct(item)">
         Show details
-      </button>
+        </button>
       </mat-list-item>
     </mat-list>
   </mat-grid-tile>
   <mat-grid-tile>
-    <ng-container *ngIf="details$ | async as item">
-      {{ item.title }}
-      {{ item.price }}
+    <ng-container *ngIf="selectedProduct$ | async as item">
+      <div class="">
+        <button mat-button color="primary" (click)="hideProduct()">Hide</button>
+        {{ item.title }}
+        {{ item.price }}
+        {{ item.category }}
+      </div>
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let item of similarProducts$ | async">
+          {{ item.title }}
+        </mat-list-item>
+      </mat-list>
     </ng-container>
   </mat-grid-tile>
 </mat-grid-list>
+
+
